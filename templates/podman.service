@@ -46,7 +46,7 @@ ExecStart=/usr/bin/podman run \
                           {% if service.label_vars is defined %}
                           {% for label in service.label_vars %}
                           -l {{ label }} \
-                          {% end for %}
+                          {% endfor %}
                           {% endif %}
                           {% if service.env_vars is defined %}
                           {% for env in service.env_vars %}
