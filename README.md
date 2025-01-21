@@ -75,6 +75,9 @@ podman_services:
         uid: 0
         gid: 0
         mode: 0
+    # Optional: A list of label variables to add to the container. Default is none
+    label_vars:
+      - io.containers.autoupdate=registry
     # Optional: A list of environment variables to add to the
     # container.  Default is none.
     env_vars:
