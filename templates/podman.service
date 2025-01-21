@@ -21,7 +21,9 @@ ExecStart=/usr/bin/podman run \
                           --hostname {{ service.hostname }} \
                           {% endif %}
                           {% if service.network is defined %}
-                          --network {{ service.network }} \
+                          {% for net in service.network %}
+                          --network {{ net }} \
+                          {% endfor %}
                           {% endif %}
                           {% if service.publish is defined %}
                           {% for publish in service.publish %}
@@ -41,8 +43,8 @@ ExecStart=/usr/bin/podman run \
                             {% if secret.uid is defined %},uid={{ secret.uid }}{% endif %}\
                             {% if secret.gid is defined %},gid={{ secret.gid }}{% endif %}\
                             {% if secret.mode is defined %},mode={{ secret.mode }}{% endif %} \
-                          {% endif %}
                           {% endfor %}
+                          {% endif %}
                           {% if service.label_vars is defined %}
                           {% for label in service.label_vars %}
                           -l {{ label }} \
